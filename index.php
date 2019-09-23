@@ -8,6 +8,7 @@ include_once "db_function/func_patient.php";
 <head>
     <title></title>
     <link rel="stylesheet" type="text/css" href="plugins/datatables.min.css">
+    <script src="js/my_js.js" type="text/javascript"></script>
 </head>
 <body>
     <header></header>
@@ -28,8 +29,14 @@ include_once "db_function/func_patient.php";
                 case "ins":
                     include_once "view/insurance.php";
                     break;
+                case "insupd":
+                    include_once "view/insurance_update.php";
+                    break;
                 case "pat":
                     include_once "view/patient.php";
+                    break;
+                case "patupd":
+                    include_once "view/patient_update.php";
                     break;
                 default:
                     include_once"view/home.php";

@@ -12,6 +12,12 @@ if(isset($btnPatClicked)){
     $ins = filter_input(0,"ins");
     addPatient($mrn,$cidn,$nme,$addr,$bhp,$bhd,$phn,$pto,$ins);
 }
+
+$deleted = filter_input(1,"mrn");
+if(isset($deleted)){
+    delPatient($deleted);
+    header('Location:index.php?nav=pat');
+}
 ?>
 
 <fieldset>
@@ -66,12 +72,14 @@ if(isset($btnPatClicked)){
         <td>phone number</td>
         <td>photo </td>
         <td>insurance</td>
+        <td>action</td>
     </tr>
     </thead>
     <tbody>
     <?php
     $patients = getAllPatient();
     foreach ($patients as $patient){
+        $patstrg = "'".$patient['med_record_number']."'";
         echo '<tr>'
         .'<td>'.$patient["med_record_number"].'</td>'
         .'<td>'.$patient["citizen_id_number"].'</td>'
@@ -82,7 +90,9 @@ if(isset($btnPatClicked)){
         .'<td>'.$patient["phone_number"].'</td>'
         .'<td>'.$patient["photo"].'</td>'
         .'<td>'.$patient["name_class"].'</td>'
-    .'</tr>';
+        .'<td><button onclick="patUpdate('.$patstrg.')">update</button>'
+        .'<button onclick="patDelete('.$patstrg.')">delete</button></td>'
+        .'</tr>';
     }
     ?>
     </tbody>
